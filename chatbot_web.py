@@ -81,18 +81,16 @@ load_custom_css()
 # --------------------------------------------------
 # KONFIGURASI API & KONEKSI (Tetap sama)
 # --------------------------------------------------
-try:
-    GEMINI_API_KEY = st.secrets["GEMINI_API_KEY"]
-    SUPABASE_URL = st.secrets["SUPABASE_URL"]
-    SUPABASE_KEY = st.secrets["SUPABASE_KEY"]
+GEMINI_API_KEY = "AIzaSyCv1CwT5pWAF-fkj5nHjIrryu6F2gZeL9c" #
+SUPABASE_URL = "https://mmacplzzdrpezpfremul.supabase.co" #
+SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1tYWNwbHp6ZHJwZXpwZnJlbXVsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTkxNDYzMDUsImV4cCI6MjA3NDcyMjMwNX0.h7HMd8xYBz7RnxE1-G5RmowX_-Gn1u_l7NVEFDVwrOg" #
 
+try:
     genai.configure(api_key=GEMINI_API_KEY)
-    # Model "gemini-2.5-flash" tidak ada, gunakan "gemini-1.5-flash"
-    model = genai.GenerativeModel("gemini-2.5-flash") 
+    model = genai.GenerativeModel("gemini-2.5-flash")
     supabase: Client = create_client(SUPABASE_URL, SUPABASE_KEY)
 except Exception as e:
-    st.error(f"Konfigurasi API atau Secrets gagal: {e}")
-    st.info("Pastikan Anda sudah mengatur GEMINI_API_KEY, SUPABASE_URL, dan SUPABASE_KEY di menu 'Settings > Secrets' pada dashboard Streamlit Anda.")
+    st.error(f"Konfigurasi API gagal: {e}")
     st.stop()
 
 # --- PEMULIHAN SESI LOGIN (Tetap sama) ---
